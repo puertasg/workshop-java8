@@ -13,11 +13,18 @@ import static org.junit.Assert.*;
  * Exercice 01 - Méthode par défaut
  */
 public class Method_01_Test {
-
+	private static int sum;
     // tag::IDao[]
+	
     interface IDao {
         List<Person> findAll();
-
+        
+        default int sumAge(List<Person> p)
+        {
+        	sum = 0;
+			p.forEach(per -> sum += per.getAge());
+        	return sum;
+        }
         // TODO créer une méthode int sumAge()
         // TODO Cette méthode retourne le résultat de l'addition des ages des personnes
     }
@@ -49,7 +56,7 @@ public class Method_01_Test {
         DaoA daoA = new DaoA();
 
         // TODO invoquer la méthode sumAge pour que le test soit passant
-        int result = 0;
+        int result = daoA.sumAge(daoA.people);
 
         assertThat(result, is(210));
     }
@@ -60,7 +67,7 @@ public class Method_01_Test {
         DaoB daoB = new DaoB();
 
         // TODO invoquer la méthode sumAge pour que le test soit passant
-        int result = 0;
+        int result = daoB.sumAge(daoB.people);
 
         assertThat(result, is(5050));
 
