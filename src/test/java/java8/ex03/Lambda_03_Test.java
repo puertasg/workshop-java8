@@ -2,8 +2,10 @@ package java8.ex03;
 
 import java8.data.Data;
 import java8.data.Person;
+
 import org.junit.Test;
 
+import java.util.Iterator;
 import java.util.List;
 
 import static org.hamcrest.Matchers.*;
@@ -23,6 +25,12 @@ public class Lambda_03_Test {
     // tag::forEach[]
     private void forEach(List<Person> source, PersonProcessor processor) {
        // TOD0
+    	Iterator<Person> it = source.iterator();
+    	
+    	while (it.hasNext()) {
+    		Person p = it.next();
+    		processor.process(p);
+		}
     }
     // end::forEach[]
 
@@ -32,11 +40,14 @@ public class Lambda_03_Test {
     public void test_verify_person() throws Exception {
 
         List<Person> personList = Data.buildPersonList(100);
-
         // TODO vérifier qu'une personne à un prénom qui commence par first
         // TODO vérifier qu'une personne à un nom qui commence par last
         // TODO vérifier qu'une personne à un age > 0
-        PersonProcessor verifyPerson = null;
+        PersonProcessor verifyPerson = p->{
+        									assertTrue(p.getFirstname().startsWith("first"));
+        									assertTrue(p.getLastname().startsWith("last"));
+        									assertTrue(p.getAge() > 0);
+        								  };
 
         assertThat(verifyPerson, notNullValue());
 
