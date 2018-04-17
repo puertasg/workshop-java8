@@ -6,6 +6,7 @@ import java8.data.Person;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import static org.hamcrest.Matchers.*;
@@ -20,13 +21,29 @@ public class Lambda_02_Test {
     interface PersonToAccountMapper {
         Account map(Person p);
     }
+    
+    interface PersonToAny<T>
+    {
+    	T map(Person p);
+    }
+    
     // end::PersonToAccountMapper[]
 
     // tag::map[]
-    private List<Account> map(List<Person> personList, PersonToAccountMapper mapper) {
-        // TODO implémenter la méthode
-        return null;
+    
+    private <T> List<T> map(List<Person> personList, PersonToAny<T> mapper) {
+    	
+    	List<T> listAccount = new ArrayList<>();
+    	Iterator<Person> it = personList.iterator();
+    	
+    	while (it.hasNext()) {
+    		Person p = it.next();
+    		listAccount.add(mapper.map(p));
+		}
+    	
+        return listAccount;
     }
+    
     // end::map[]
 
 
@@ -38,7 +55,11 @@ public class Lambda_02_Test {
 
         // TODO transformer la liste de personnes en liste de comptes
         // TODO tous les objets comptes ont un solde à 100 par défaut
-        List<Account> result = map(personList, null);
+        List<Account> result = map(personList, p -> {Account a = new Account();
+        												a.setBalance(100);
+        												a.setOwner(p);
+        												return a;
+        											});
 
         assertThat(result, hasSize(personList.size()));
         assertThat(result, everyItem(hasProperty("balance", is(100))));
@@ -53,7 +74,7 @@ public class Lambda_02_Test {
         List<Person> personList = Data.buildPersonList(100);
 
         // TODO transformer la liste de personnes en liste de prénoms
-        List<String> result = null;
+        List<String> result = map(personList, p -> p.getFirstname());
 
         assertThat(result, hasSize(personList.size()));
         assertThat(result, everyItem(instanceOf(String.class)));
