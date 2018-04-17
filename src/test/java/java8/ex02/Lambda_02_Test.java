@@ -33,15 +33,15 @@ public class Lambda_02_Test {
     
     private <T> List<T> map(List<Person> personList, PersonToAny<T> mapper) {
     	
-    	List<T> listAccount = new ArrayList<>();
+    	List<T> newList = new ArrayList<>();
     	Iterator<Person> it = personList.iterator();
     	
     	while (it.hasNext()) {
     		Person p = it.next();
-    		listAccount.add(mapper.map(p));
+    		newList.add(mapper.map(p));
 		}
     	
-        return listAccount;
+        return newList;
     }
     
     // end::map[]
