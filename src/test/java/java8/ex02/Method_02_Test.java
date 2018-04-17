@@ -18,9 +18,9 @@ public class Method_02_Test {
     interface IDao {
         List<Person> findAll();
         
-        static String format(List<Person> p)
+        default String format()
         {
-        	return "[" + p.size() + " persons]";
+        	return "[" + findAll().size() + " persons]";
         }
         
         // TODO créer une méthode String format()
@@ -39,9 +39,10 @@ public class Method_02_Test {
             return people;
         }
         
+        @Override
         public String format()
         {
-        	return "DaoA" + IDao.format(this.people);
+        	return "DaoA" + IDao.super.format();
         }
 
         // TODO redéfinir la méthode String format()

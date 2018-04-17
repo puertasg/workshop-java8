@@ -4,6 +4,7 @@ import java8.data.Data;
 import java8.data.Person;
 import org.junit.Test;
 
+import java.util.Iterator;
 import java.util.List;
 
 import static org.hamcrest.Matchers.*;
@@ -13,16 +14,20 @@ import static org.junit.Assert.*;
  * Exercice 01 - Méthode par défaut
  */
 public class Method_01_Test {
-	private static int sum;
     // tag::IDao[]
 	
     interface IDao {
         List<Person> findAll();
         
-        default int sumAge(List<Person> p)
+        default int sumAge()
         {
-        	sum = 0;
-			p.forEach(per -> sum += per.getAge());
+        	int sum = 0;
+			Iterator<Person> i = findAll().iterator();
+			
+			while (i.hasNext()) {
+				Person p = (Person) i.next();
+				sum += p.getAge();
+			}
         	return sum;
         }
         // TODO créer une méthode int sumAge()
@@ -56,7 +61,7 @@ public class Method_01_Test {
         DaoA daoA = new DaoA();
 
         // TODO invoquer la méthode sumAge pour que le test soit passant
-        int result = daoA.sumAge(daoA.people);
+        int result = daoA.sumAge();
 
         assertThat(result, is(210));
     }
@@ -67,7 +72,7 @@ public class Method_01_Test {
         DaoB daoB = new DaoB();
 
         // TODO invoquer la méthode sumAge pour que le test soit passant
-        int result = daoB.sumAge(daoB.people);
+        int result = daoB.sumAge();
 
         assertThat(result, is(5050));
 
