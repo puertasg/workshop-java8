@@ -39,7 +39,7 @@ public class Method_02_Test {
             return people;
         }
         
-        public String format(List<Person> p)
+        public String format()
         {
         	return "DaoA" + IDao.format(this.people);
         }
@@ -58,7 +58,7 @@ public class Method_02_Test {
         DaoA daoA = new DaoA();
 
         // TODO invoquer la méthode format() pour que le test soit passant
-        String result = daoA.format(daoA.people);
+        String result = daoA.format();
         
         assertThat(result, is("DaoA[20 persons]"));
     }
