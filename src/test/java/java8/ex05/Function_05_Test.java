@@ -36,13 +36,15 @@ public class Function_05_Test {
 
         // TODO invoquer la méthode personList.forEach pour modifier les mots de passe en "secret"
         // personList.forEach...
+        personList.forEach(changePasswordToSecret);
 
         // TODO remplacer la boucle for par l'invocation de la méthode forEach
         // TODO Utiliser la méthode andThen pour chaîner les vérifications verifyAge et verifyPassword
         // personList.forEach...
-        for(Person p : personList) {
+        personList.forEach(verifyAge.andThen(verifyPassword));
+        /*for(Person p : personList) {
             verifyAge.accept(p);
             verifyPassword.accept(p);
-        }
+        }*/
     }
 }
