@@ -48,7 +48,9 @@ public class Function_06_Test {
         expectedException.expectMessage("require non null object");
 
         // TODO compléter le test unitaire pour qu'il soit passant
-        Supplier<String> supplier = null;
+        Supplier<String> supplier = () -> {
+        	return "require non null object";
+        };
 
         // Avec un paramètre null, cette méthode déclenche un NullPointerException
         Objects.requireNonNull(null, supplier);
