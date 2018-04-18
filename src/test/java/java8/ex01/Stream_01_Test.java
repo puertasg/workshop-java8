@@ -68,7 +68,7 @@ public class Stream_01_Test {
         List<Pizza> pizzas = new Data().getPizzas();
 
         // TODO valider qu'aucune pizza n'a un prix >= 2000
-        Boolean result1 = null;
+        Boolean result1 = pizzas.stream().noneMatch(pi -> pi.getPrice() >= 2000);
 
         assertThat(result1, is(true));
     }
