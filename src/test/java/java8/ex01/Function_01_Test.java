@@ -24,6 +24,7 @@ public class Function_01_Test {
     // TODO le nom sera de la forme "last_<ENTIER>"
     // TODO l'age sera de la forme "<ENTIER>"
     // TODO le mot de passe sera de la forme "pass_<ENTIER>"
+	//<Type paramètre, Type retourné>
     private Function<Integer, Person> intToPerson = i -> new Person("first_" + i, "last_" + i, i, "pass_" + i);
     // end::intToPerson[]
 
@@ -71,7 +72,7 @@ public class Function_01_Test {
     // tag::intToAccountWithCompose[]
     // TODO Compléter la définition de cette fonction
     // TODO Utiliser la méthode compose pour réutiliser les fonctions intToPerson et personToAccount
-    //personToAccount sera lancée en dernier
+    //compose fusionne deux fonctions, ici personToAccount et intToPerson puis on appelle la fonction qui en résulte
     private Function<Integer, Account> intToAccountWithCompose = i -> personToAccount.compose(intToPerson).apply(i);
     // end::intToAccountWithCompose[]
 
