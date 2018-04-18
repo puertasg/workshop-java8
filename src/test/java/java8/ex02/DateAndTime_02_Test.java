@@ -85,7 +85,7 @@ public class DateAndTime_02_Test {
 
         // TODO créer un objet LocalDate à la date 10/01/2000
         // TODO utiliser la méthode of
-        LocalDate localDate = null;
+        LocalDate localDate = LocalDate.of(2000, 1, 10);
 
         // TODO transformer la date précédente en 05/02/2015
         LocalDate result = null;
