@@ -92,7 +92,7 @@ public class Stream_01_Test {
         List<Order> orders = new Data().getOrders();
 
         // TODO récupérer une commande faite par un client dont le prénom est "Sophie"
-        Optional<Order> result = null;
+        Optional<Order> result = orders.stream().filter(or -> or.getCustomer().equals("Sophie")).findFirst();
 
         assertThat(result.isPresent(), is(false));
     }
@@ -102,7 +102,7 @@ public class Stream_01_Test {
         List<Pizza> pizzas = new Data().getPizzas();
 
         // TODO Trouver la pizza la plus chère
-        Optional<Pizza> result = null;
+        Optional<Pizza> result = pizzas.stream().max((p1, p2) -> p1.getPrice().compareTo(p2.getPrice()));
 
         assertThat(result.isPresent(), is(true));
         assertThat(result.get(), hasProperty("id", is(5)));
