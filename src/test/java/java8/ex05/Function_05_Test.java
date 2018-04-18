@@ -26,7 +26,7 @@ public class Function_05_Test {
 
     // TODO compléter la fonction
     // TODO vérifier que le mot de passe est "secret" avec une assertion JUnit
-    Consumer<Person> verifyPassword = null;
+    Consumer<Person> verifyPassword = p -> assertTrue(p.getPassword().equals("secret"));
     //end::functions[]
 
 
