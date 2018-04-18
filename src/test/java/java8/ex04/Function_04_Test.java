@@ -42,7 +42,7 @@ public class Function_04_Test {
         List<Person> personList = Data.buildPersonList();
 
         // TODO invoquer la méthode filter pour que le test soit passant
-        List<Person> result = null;
+        List<Person> result = filter(personList, adult);
 
         assertThat(result,  hasSize(4));
 
