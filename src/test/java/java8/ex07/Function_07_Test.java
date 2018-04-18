@@ -32,7 +32,7 @@ public class Function_07_Test {
     }
 
     // TODO définir substract afin que le test test_format_subtract() soit passant
-    IntBinaryOperator substract = null;
+    IntBinaryOperator substract = (n1, n2) -> n1 - n2;
 
     @Test
     public void test_format_subtract() throws Exception {
