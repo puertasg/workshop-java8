@@ -52,10 +52,10 @@ public class Stream_01_Test {
         List<Pizza> pizzas = new Data().getPizzas();
 
         // TODO valider que toutes les pizzas ont un prix >= 1300
-        Boolean result1 = null;
+        Boolean result1 = pizzas.stream().allMatch(pi -> pi.getPrice() >= 1300);
 
         // TODO valider que toutes les pizzas ont un prix >= 900
-        Boolean result2 = null;
+        Boolean result2 =pizzas.stream().allMatch(pi -> pi.getPrice() >= 900);
 
         assertThat(result1, is(false));
         assertThat(result2, is(true));
