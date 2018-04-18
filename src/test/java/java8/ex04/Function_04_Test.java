@@ -42,11 +42,7 @@ public class Function_04_Test {
         List<Person> personList = Data.buildPersonList();
 
         // TODO invoquer la méthode filter pour que le test soit passant
-<<<<<<< Updated upstream
         List<Person> result = filter(personList, adult);
-=======
-        List<Person> result = result.filter(personList, adult.apply(p));
->>>>>>> Stashed changes
 
         assertThat(result,  hasSize(4));
 
