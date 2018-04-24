@@ -88,7 +88,7 @@ public class DateAndTime_02_Test {
         LocalDate localDate = LocalDate.of(2000, 1, 10);
 
         // TODO transformer la date précédente en 05/02/2015
-        LocalDate result = null;
+        LocalDate result = localDate.plusYears(15).plusMonths(1).minusDays(5);
 
         assertThat(result.getYear(), is(2015));
         assertThat(result.getMonth(), is(Month.FEBRUARY));
